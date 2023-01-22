@@ -43,8 +43,6 @@ def collect_coins(type_coffee):
     pennies = int(input("How many pennies?: "))
     total_inputted = (0.25 * quarters) + (0.10 * dimes) + (0.05 * nickles) + (0.01 * pennies)
     cost = MENU[type_coffee]["cost"]
-    cost = MENU[type_coffee]["cost"]
-    cost = MENU[type_coffee]["cost"]
 
     if total_inputted >= cost:
         change = total_inputted - cost
@@ -74,9 +72,11 @@ def check_ingredients(type_coffee):
 
 def use_resources(type_coffee):
     """Subtracts used resources based on the drink that is made."""
-    resources["water"] -= MENU[type_coffee]["ingredients"]["water"]
-    resources["milk"] -= MENU[type_coffee]["ingredients"]["milk"]
-    resources["coffee"] -= MENU[type_coffee]["ingredients"]["coffee"]
+    # resources["water"] -= MENU[type_coffee]["ingredients"]["water"]
+    # resources["milk"] -= MENU[type_coffee]["ingredients"]["milk"]
+    # resources["coffee"] -= MENU[type_coffee]["ingredients"]["coffee"]
+    for item in MENU[type_coffee]["ingredients"]:
+        resources[item] -= MENU[type_coffee]["ingredients"][item]
 
 
 def coffee_machine():
