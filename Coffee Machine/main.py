@@ -35,6 +35,7 @@ resources = {
 
 
 def collect_coins(type_coffee):
+    """Processes the coins and returns True if the payment is enough for the drinks cost and False otherwise."""
     print("Please insert coins.")
     quarters = int(input("How many quarters?: "))
     dimes = int(input("How many dimes?: "))
@@ -51,10 +52,12 @@ def collect_coins(type_coffee):
         print(f"☕️: Here is your {type_coffee}. Enjoy!")
         return True
     else:
+        print("Sorry that is not enough money. Money refunded.")
         return False
 
 
 def check_ingredients(type_coffee):
+    """Returns True if there is enough resources to make the drink and False otherwise with a message of what is lacking."""
     if (MENU[type_coffee]["ingredients"]["water"] <= resources["water"]) and (
             MENU[type_coffee]["ingredients"]["milk"] <= resources["milk"]) and (
             MENU[type_coffee]["ingredients"]["coffee"] <= resources["coffee"]):
@@ -70,18 +73,31 @@ def check_ingredients(type_coffee):
 
 
 def use_resources(type_coffee):
+    """Subtracts used resources based on the drink that is made."""
     resources["water"] -= MENU[type_coffee]["ingredients"]["water"]
     resources["milk"] -= MENU[type_coffee]["ingredients"]["milk"]
     resources["coffee"] -= MENU[type_coffee]["ingredients"]["coffee"]
 
 
 def coffee_machine():
+    """Infinitely loops through the coffee machine program."""
+    profit = 0.00
     while True:
         type = input("What would you like? ('e' - espresso/'l' - latte/'c' - cappuccino): ")
-        enough_ingredients = check_ingredients(type)
-        if enough_ingredients:
-            successful_purchase = collect_coins(type)
-            use_resources(type)
+        if type == "off":
+            break
+        elif type == "report":
+            print(f"Water: {resources['water']}")
+            print(f"Milk: {resources['milk']}")
+            print(f"Coffee: {resources['coffee']}")
+            print("Profit: {:.2f}".format(profit))
+        else:
+            enough_ingredients = check_ingredients(type)
+            if enough_ingredients:
+                successful_purchase = collect_coins(type)
+                if successful_purchase:
+                    profit += MENU[type]["cost"]
+                    use_resources(type)
 
 
 print(logo)
