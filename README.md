@@ -27,3 +27,5 @@ I hope this repository can inspire your own solutions that you can then compare 
 ## 🤝 References
 
 [100 Days of Code: The Complete Python Pro Bootcamp](https://www.udemy.com/course/100-days-of-code/)
+
+[The Complete Python Bootcamp From Zero to Hero in Python](https://www.udemy.com/course/complete-python-bootcamp/)
