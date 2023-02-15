@@ -48,6 +48,8 @@ def position_check(board):
 
         if board[row-1][column-1] == " ":
             break
+        else:
+            print("Position Taken")
 
     return row, column
 
@@ -77,6 +79,9 @@ def check_winner(board, player):
         return False
     elif (board[0][0] == board[1][0] == board[2][0] == player) or (board[0][1] == board[1][1] == board[2][1] == player) or (board[0][2] == board[1][2] == board[2][2] == player):
         display_winner(player)
+        return False
+    elif (" " not in board[0]) and (" " not in board[1]) and (" " not in board[2]):
+        print("Tie Game! Thanks for playing!")
         return False
     else:
         return True
